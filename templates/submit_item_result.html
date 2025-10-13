@@ -1,0 +1,14 @@
+<p>
+    Seller {{data.seller}} sells {{data.name}} and its category is {{data.category}}.
+
+    The item is
+    {% if data['status'] == "lnew" %}
+    …
+    used!
+    {% endif %}
+</p>
+<img src="{{img_path}}"/>
+<p>
+    Contact via {{data.email}} or {{data.phone}} if you are interested!
+    ….
+</p>
