@@ -1,24 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
-</head>
-<body>
-    <nav class="navbar">
-        <div class="navbar__logo">
+/* 기본 스타일 초기화 */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+}
 
-            <a href="">EwhaMarket</a>
-        </div>
-        <ul class="navbar__menu">
-            <li><a href="">List</a></li>
-            <li><a href="">Review</a></li>
-            <li><a href="">Register Items</a></li>
-            <li><a href="">Register Reviews</a></li>
-        </ul>
-    </nav>
-</body>
-</html>
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+li {
+    list-style: none;
+}
+
+/* 네비게이션 바 전체 스타일 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 8px 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 로고 스타일 */
+.navbar__logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2653a1; /* 포인트 컬러 */
+}
+
+/* 메뉴 스타일 */
+.navbar__menu {
+    display: flex;
+    padding-left: 0;
+}
+
+.navbar__menu li {
+    padding: 8px 16px;
+}
+
+.navbar__menu li a:hover {
+    color: #2653a1;
+    font-weight: 500;
+}
+
+/* 토글 버튼 (햄버거 버튼) */
+.navbar__toogleBtn {
+    display: none; /* 평소에는 숨김 */
+    font-size: 24px;
+    color: #2653a1;
+}
+
+/* 반응형 설정 (화면 너비가 768px보다 작아질 때) */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 24px;
+    }
+
+    .navbar__menu {
+        display: none; /* 메뉴 숨김 */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    .navbar__menu.active {
+        display: flex; /* active 클래스가 추가되면 메뉴 보임 */
+    }
+
+    .navbar__menu li {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .navbar__menu li:hover {
+        background-color: #f0f0f0;
+        border-radius: 4px;
+    }
+
+    .navbar__toogleBtn {
+        display: block; /* 토글 버튼 보임 */
+        position: absolute;
+        top: 18px;
+        right: 24px;
+    }
+}
