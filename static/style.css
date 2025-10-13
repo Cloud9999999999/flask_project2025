@@ -68,7 +68,7 @@ li {
         text-align: center;
         margin-top: 12px;
     }
-    
+
     .navbar__menu.active {
         display: flex; /* active 클래스가 추가되면 메뉴 보임 */
     }
@@ -77,7 +77,7 @@ li {
         width: 100%;
         padding: 10px 0;
     }
-    
+
     .navbar__menu li:hover {
         background-color: #f0f0f0;
         border-radius: 4px;
