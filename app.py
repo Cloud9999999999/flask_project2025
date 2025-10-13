@@ -23,6 +23,20 @@ def reg_item():
 def reg_review():
         return render_template("reg_reviews.html")
 
+@application.route("/submit_item")
+def reg_item_submit():
+    name=request.args.get("name")
+    seller=request.args.get("seller")
+    addr=request.args.get("addr")
+    email=request.args.get("email")
+    category=request.args.get("category")
+    card=request.args.get("card")
+    status=request.args.get("status")
+    phone=request.args.get("phone")
+    
+    print(name,seller,addr,email,category,card,status,phone)
+    #return render_template("reg_item.html")
+
 @application.route("/submit_item_post", methods=['POST'])
 def reg_item_submit_post():
     image_file=request.files["file"]
