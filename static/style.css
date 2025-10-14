@@ -1,33 +1,30 @@
 /* 기본 설정 */
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif; /* 이전 예제에서 사용한 폰트 또는 원하는 폰트 */
+    font-family: 'Poppins', sans-serif;
 }
 
 a {
-    text-decoration: none; /* 링크 밑줄 제거 */
+    text-decoration: none;
     color: white;
 }
 
-/* 네비게이션 바 전체 스타일 */
 .navbar {
-    display: flex; /* 로고, 메뉴를 가로로 정렬 */
-    justify-content: space-between; /* 양쪽 끝으로 요소를 분배 */
-    align-items: center; /* 세로 중앙 정렬 */
-    background-color: #263343;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00462A;
     padding: 8px 12px;
 }
 
-/* 로고 스타일 */
 .navbar__logo {
     font-size: 24px;
     color: white;
 }
 
-/* 메뉴 리스트 스타일 */
 .navbar__menu {
     display: flex;
-    list-style: none; /* li 태그의 점 제거 */
+    list-style: none;
     padding-left: 0;
 }
 
@@ -53,12 +50,12 @@ a {
 /* 화면이 작아졌을 때 (모바일 환경) 적용될 스타일 */
 @media screen and (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* 세로 정렬로 변경 */
-        align-items: flex-start; /* 왼쪽 정렬 */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .navbar__menu {
-        display: none; /* 메뉴를 기본적으로 숨김 */
+        display: none;
         flex-direction: column;
         align-items: center;
         width: 100%;
@@ -70,10 +67,9 @@ a {
     }
 
     .navbar__toogleBtn {
-        display: block; /* 숨겼던 토글 버튼을 보여줌 */
+        display: block;
     }
 
-    /* JavaScript로 active 클래스가 추가되면 메뉴를 보여줌 */
     .navbar__menu.active {
         display: flex;
     }

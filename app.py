@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import sys
 
 application = Flask(__name__)
@@ -22,22 +22,6 @@ def reg_items():
 @application.route("/reg_reviews")
 def reg_reviews():
   return render_template("reg_reviews.html")
-
-
-
-#@application.route("/submit_item")
-#def reg_item():
-#  name = request.args.get("name")
-#  seller = request.args.get("seller")
-#  addr = request.args.get("addr")
-#  email = request.args.get("email")
-#  category = request.args.get("category")
-#  card = request.args.get("card")
-#  status = request.args.get("status")
-#  phone = request.args.get("phone")
-  
-#  print(name, seller, addr, email, category, card, status, phone)
-  #return render_template("reg_items.html")
 
 
 @application.route("/submit_item_post", methods=["POST"])
