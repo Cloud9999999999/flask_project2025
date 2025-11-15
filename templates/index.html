@@ -4,28 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="{{ url_for('static', filename='main.js') }}" defer></script>
   </head>
   <body>
-    <nav class="navbar">
-      <div class="navbar__logo">
-        <a href="">EwhaMarket</a>
+    <header>
+      <div class="logo">
+        <img src="/static/images/Market-logo.png">
       </div>
-      <ul class="navbar__menu">
-        <li><a href="/login">login</a></li>
-        <li><a href="/list">List</a></li>
-        <li><a href="/review">Review</a></li>
-        <li><a href="/reg_items">Register Items</a></li>
-        <li><a href="/reg_reviews">Register Reviews</a></li>
-      </ul>
-      <a href="#" class="navbar__toogleBtn">
-        <i class="fas fa-bars"></i>
-      </a>
-    </nav>
-    <section>{% block section %} {% endblock section %}</section>
+
+      <nav class="nav">
+        <ul class="nav-menu">
+          {% if session['id'] %}
+          <li>
+            <a href="{{ url_for('logout_user') }}">
+              <b>{{session['id']}}님 반갑습니다!</b>logout
+            </a>
+          </li>
+          {% else %}
+          <li>
+            <a href="{{ url_for('login_user') }}">login</a>
+          </li>
+          {% endif %}
+          <li><a href="/list">List</a></li>
+          <li><a href="/review">Review</a></li>
+          <li><a href="/reg_items">Register Items</a></li>
+          <li><a href="/reg_reviews">Register Reviews</a></li>
+        </ul>
+
+        <a href="#" class="navbar__toogleBtn">
+          <i class="fas fa-bars"></i>
+        </a>
+      </nav>
+    </header>
+
+    <section>
+      {% block section %}
+
+    <main class="container">
+      <div class="page">
+          <a href="#" class="active">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">&gt;</a>
+        </div>
+    </main>
+
+    <script>
+      const filterButtons = document.querySelectorAll(".filter");
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+    </script>
+
+      {% endblock section %}
+    </section>
+
+    <!--<footer><p>@cloud9</p></footer>-->
   </body>
 </html>

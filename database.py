@@ -9,13 +9,13 @@ class DBhandler:
 
     def insert_item(self, name, data, img_path):
         item_info = {
-            "seller": data.get('seller', ''),
-            "addr": data.get('addr', ''),
-            "email": data.get('email', ''),
-            "category": data.get('category', ''),
-            "card": data.get('card', ''),
-            "status": data.get('status', ''),
-            "phone": data.get('phone', ''),
+            "seller": data.get['seller'],
+            "addr": data.get['addr'],
+            "email": data.get['email'],
+            "category": data.get['category'],
+            "card": data.get['card'],
+            "status": data.get['status'],
+            "phone": data.get['phone'],
             "img_path": img_path
         }
         self.db.child("item").child(name).set(item_info)
@@ -37,12 +37,41 @@ class DBhandler:
     
     def user_duplicate_check(self, id_string):
         users = self.db.child("user").get()
+        
         print("users###",users.val())
         if str(users.val()) == "None": # first registration
             return True
         else:
             for res in users.each():
                 value = res.val()
-            if value['id'] == id_string:
-                return False
-        return True
+                if value['id'] == id_string:
+                    return False
+            return True
+
+
+
+
+    def find_user(self, id_, pw_):
+        users = self.db.child("user").get()
+        target_value = []
+        for res in users.each():
+            value = res.val()
+            
+            if value['id'] == id_ and value['pw'] == pw_:
+                return True
+        return False
+    
+    def get_items(self):
+        items = self.db.child("items").get().val()
+        return items
+    
+    def get_item_byname(self, name):
+        items = self.db.child("item").get()
+        target_value=""
+        print("###########",name)
+        for res in items.each():
+            key_value = res.key()
+            
+            if key_value == name:
+                target_value=res.val()
+            return target_value
