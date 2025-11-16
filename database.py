@@ -74,4 +74,4 @@ class DBhandler:
             
             if key_value == name:
                 target_value=res.val()
-            return target_value
+        return target_value
