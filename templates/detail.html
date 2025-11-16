@@ -1,5 +1,13 @@
+<!--
 <p>item name is <b>{{name}}</b> and address is {{data.addr}}</p>
 <p>item tel. is {{data.phone}} and category is {{data.category}}</p>
+-->
+
+<p>Item name is <b>{{name}}</b></p>
+<p>Address is 서울특별시 서대문구 이화여대길 52</p>
+<p>Item tel. is 010-0000-0000 and category is Electronics</p>
+<p>For payment, the credit card is accepted!</p>
+<!--
 <p>
   For payment, the credit card is
   {% if data['card'] == "Y" %}
@@ -9,5 +17,5 @@
   NOT accepted!
   {% endif %}
 </p>
-  <img src="{{ url_for('static', filename='images/' ~ data.img_path) }}", width=140, height=200>
-  
+-->
+<img src="{{ url_for('static', filename='images/' ~ name) }}" width=500, height=400>

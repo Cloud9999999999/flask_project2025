@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from database import DBhandler
 import hashlib
@@ -21,24 +22,39 @@ def view_list():
     end_idx=per_page*(page+1)
     
     data = DB.get_items()
-    if data is None: data = {}
+    
+    if data is None:
+        data = {}
     elif isinstance(data, list):
         data = {str(i): v for i, v in enumerate(data)}
     elif not isinstance(data, dict):
         data = {}
     
+    images_dir = os.path.join(application.static_folder, "images")
+    files = os.listdir(images_dir)
+    image_files = [f for f in files if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
+    
+    data = {
+        filename: {"img_path": filename}
+        for filename in image_files
+    }
+    
     item_counts = len(data)
     
-    data = dict(list(data.items())[start_idx:end_idx])
-    tot_counts = len(data)
+    sliced_items = list(data.items())[start_idx:end_idx]
+    data = dict(sliced_items)
+    tot_count = len(data)
+    items = list(data.items())
     
     for i in range(row_count):
-        if(i == row_count):
+        if(i == row_count-1) and (tot_count % per_row != 0):
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
     return render_template("list.html", datas = data.items(), row1=locals()['data_0'].items(), row2=locals()['data_1'].items(),
     limit=per_page, page=page, page_count=int((item_counts/per_page)+1), total = item_counts)
+
+
 
 
 @application.route("/review")
