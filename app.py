@@ -10,7 +10,7 @@ application.config["SECRET_KEY"] = "helloosp"
 
 @application.route("/")
 def hello():
-    return redirect(url_for('view_list'))
+    return redirect(url_for('login'))
 
 @application.route("/list")
 def view_list():
