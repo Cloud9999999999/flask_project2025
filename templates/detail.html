@@ -1,0 +1,63 @@
+{% set clean_name = name.rsplit('.', 1)[0] %}
+{% extends "index.html" %}
+{% block section %}
+
+<p>Item name is <b>{{ name }}</b></p>
+<p>Address is 서울특별시 서대문구 이화여대길 52</p>
+<p>Item tel. is 010-0000-0000 and category is Electronics</p>
+<p>For payment, the credit card is accepted!</p>
+
+<img src="{{ url_for('static', filename='images/' ~ name) }}" width="500" height="400">
+
+<button onclick="location.href='/reg_review_init/{{ name }}/';">
+    리뷰등록
+</button>
+
+<i class="fa fa-heart" id="heart" data-name="{{ clean_name }}"></i>
+
+<script>
+function showHeart() {
+    $.ajax({
+        type: 'GET',
+        url: '/show_heart/{{ clean_name }}/',
+        success: function (response) {
+            let my_heart = response['my_heart'];
+            if (my_heart == 'Y' || (my_heart && my_heart.interested == 'Y')) {
+                $("#heart").css("color", "red");
+                $("#heart").attr("onclick", "unlike()");
+            } else {
+                $("#heart").css("color", "grey");
+                $("#heart").attr("onclick", "like()");
+            }
+        }
+    });
+}
+
+function like() {
+    $.ajax({
+        type: 'POST',
+        url: '/like/{{ clean_name }}/',
+        data: { interested: "Y" },
+        success: function (response) {
+            alert(response.msg);
+            window.location.reload();
+        }
+    });
+}
+
+function unlike() {
+    $.ajax({
+        type: 'POST',
+        url: '/unlike/{{ clean_name }}/',
+        data: { interested: "N" },
+        success: function (response) {
+            alert(response.msg);
+            window.location.reload();
+        }
+    });
+}
+
+$(document).ready(showHeart);
+</script>
+
+{% endblock section %}

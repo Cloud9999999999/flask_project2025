@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block section %}
+
+
+<p>
+    review title is <b>{{ data.title }}</b> 
+    and rate is <b>{{ data.rate }}</b> points out of 5 points
+</p>
+
+<!-- 리뷰 이미지 -->
+<img src="{{ url_for('static', filename='images/' ~ data.img_path) }}" 
+     width="400"
+     style="margin-top: 20px;">
+
+<!-- 리뷰 본문 -->
+<p style="margin-top: 20px; font-size: 18px;">
+    {{ data.review }}
+</p>
+
+{% endblock section %}
